@@ -42,6 +42,24 @@ class LoginController: UIViewController {
         return tf
     }()
     
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Log In", for: .normal)
+        button.setTitleColor(.twitterBlue, for: .normal)
+        button.backgroundColor = .white
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        return button
+    }()
+    
+    private let dontHaveAccountButton: UIButton = {
+        let button = Utilities().attributedButton("Don't have an account?", " Sign Up")
+        button.addTarget(self, action: #selector(handleShowSignUp), for: .touchUpInside)
+        return button
+    }()
+    
     
     // MARK: - Lifecycle
     
@@ -51,6 +69,15 @@ class LoginController: UIViewController {
     }
     
     // MARK: - Selectors
+    
+    @objc func handleLogin() {
+        print("Handle login here..")
+    }
+    
+    @objc func handleShowSignUp() {
+        let controller = RegistrationViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
     
     // MARK: - Helpers
     
@@ -63,11 +90,15 @@ class LoginController: UIViewController {
         logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
         logoImageView.setDimensions(width: 150, height: 150)
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView])
+        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
         stack.axis = .vertical
-        stack.spacing = 8
+        stack.spacing = 20
+        stack.distribution = .fillEqually
         
         view.addSubview(stack)
-        stack.anchor(top: logoImageView.bottomAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, paddingLeft: 16, paddingRight: 16)
+        stack.anchor(top: logoImageView.bottomAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, paddingLeft: 32, paddingRight: 32)
+        
+        view.addSubview(dontHaveAccountButton)
+        dontHaveAccountButton.anchor(leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, paddingLeft: 40, paddingRight: 40)
     }
 }
