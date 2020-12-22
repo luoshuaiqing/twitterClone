@@ -48,6 +48,7 @@ struct AuthService {
                         "profileImageUrl": profileImageUrl
                     ]
                     
+                    // use uid as the key for the users table
                     REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
                 }
             }
