@@ -12,6 +12,16 @@ class MainTabController: UITabBarController {
 
     // MARK: - Properties
     
+    var user: User? {
+        // do something whenever this property is set
+        didSet {
+            guard let nav = viewControllers?[0] as? UINavigationController else { return }
+            guard let feed = nav.viewControllers.first as? FeedController else { return }
+            
+            feed.user = user
+        }
+    }
+    
     // set up the button here so that it will appear on all tab bar
     let actionButton: UIButton = {
         let button = UIButton(type: .system)
@@ -35,7 +45,9 @@ class MainTabController: UITabBarController {
     // MARK: - API
 
     func fetchUser() {
-        UserService.shared.fetchUser()
+        UserService.shared.fetchUser { user in
+            self.user = user
+        }
     }
     
     func authenticateUserAndConfigureUI() {
@@ -92,6 +104,7 @@ class MainTabController: UITabBarController {
 
     func templateNavigationController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {
         
+        // the rootviewcontroller is actually embedded inside the navigation controller
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = image
         nav.navigationBar.barTintColor = .white
