@@ -11,8 +11,8 @@ struct User {
     let fullName: String
     let email: String
     let userName: String
-    let profileImageUrl: String
     let uid: String
+    let profileImageUrl: URL?
     
     init(uid: String, dict: [String: AnyObject]) {
         self.uid = uid
@@ -20,6 +20,8 @@ struct User {
         self.fullName = dict["fullName"] as? String ?? ""
         self.email = dict["email"] as? String ?? ""
         self.userName = dict["userName"] as? String ?? ""
-        self.profileImageUrl = dict["profileImageUrl"] as? String ?? ""
+        
+        let profileImageUrlStr = dict["profileImageUrl"] as? String ?? ""
+        self.profileImageUrl = URL(string: profileImageUrlStr)
     }
 }
