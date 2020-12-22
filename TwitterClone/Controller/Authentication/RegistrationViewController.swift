@@ -105,20 +105,21 @@ class RegistrationViewController: UIViewController {
         guard let fullName = fullNameTextField.text else { return }
         guard let userName = userNameTextField.text else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        let credentials = AuthCredentials(email: email, password: password, fullName: fullName, userName: userName, profileImage: profileImage)
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
             if let error = error {
                 print("DEBUG: ERROR IS \(error.localizedDescription)")
                 return
             }
             
-            guard let uid = result?.user.uid else { return }
-            let values = ["email": email, "userName": userName, "fullName": fullName]
-            let ref = Database.database().reference().child("users").child(uid)
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let tab = window.rootViewController as? MainTabController else { return }
             
-            ref.updateChildValues(values) {(error, ref) in
-                print("DEBUG: Successfully updated user information..")
-            }
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true, completion: nil)
         }
+
     }
     
     @objc func handleShowLogin() {
