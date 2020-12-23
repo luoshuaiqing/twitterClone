@@ -23,6 +23,7 @@ class RegistrationViewController: UIViewController {
         return button
     }()
     
+    // we can not access emailTextField in emailContainerView (since it's a instance property), unless we declare emailContainerView as a lazy variable.
     private lazy var emailContainerView: UIView = {
         let image = #imageLiteral(resourceName: "ic_mail_outline_white_2x-1")
         let view = Utilities().inputContainerView(withImage: image, textField: emailTextField)
