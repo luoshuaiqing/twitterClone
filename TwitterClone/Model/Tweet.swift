@@ -14,8 +14,10 @@ struct Tweet {
     let likes: Int
     var timestamp: Date!
     let retweetCount: Int
+    let user: User
     
-    init(tweetId: String, dict: [String: Any]) {
+    init(user: User, tweetId: String, dict: [String: Any]) {
+        self.user = user
         self.tweetId = tweetId
         
         self.caption = dict["caption"] as? String ?? ""
