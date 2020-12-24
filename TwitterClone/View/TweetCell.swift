@@ -102,7 +102,7 @@ class TweetCell: UICollectionViewCell {
         stack.anchor(top: profileImageView.topAnchor, leading: profileImageView.trailingAnchor, trailing: trailingAnchor, paddingLeft: 12, paddingRight: 12)
         
         infoLabel.font = UIFont.systemFont(ofSize: 14)
-        infoLabel.text = "Eddit Brock @venom"
+        infoLabel.text = "test@test"
         
         let actionStack = UIStackView(arrangedSubviews: [commentButton, retweetButton, likeButton, shareButton])
         actionStack.axis = .horizontal
