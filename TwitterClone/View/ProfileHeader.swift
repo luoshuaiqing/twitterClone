@@ -71,8 +71,14 @@ class ProfileHeader: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 3
-        label.text = "This is a user bio that dghdslghdshglsdhgd dgdhkgs hdgkhdk hkgslhdskgh sdkghldsghdsklh dlsghklghldshgldshgldshgldshgdhglsdghdslkgh dslghdk hkdglskhdglhgk dhslghds klghdlshgdshgdsh ld This is a user bio that dghdslghdshglsdhgd dgdhkgs hdgkhdk hkgslhdskgh sdkghldsghdsklh dlsghklghldshgldshgldshgldshgdhglsdghdslkgh dslghdk hkdglskhdglhgk dhslghds klghdlshgdshgdsh ld."
+        label.text = "This is a user bio that dghdslghdshglsdhgd dgdhkgs hdgkhdk hkgslhdskgh sdkghldsghdsklh dlsghklghldshgldshgldshgldshgdhglsdghdslkgh dslghdk hkdglskhdglhgk dhslghds klghdlshgdshgdsh ld."
         return label
+    }()
+    
+    private let underLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .twitterBlue
+        return view
     }()
     
     // MARK: - Lifecycle
@@ -103,6 +109,9 @@ class ProfileHeader: UICollectionReusableView {
         
         addSubview(filterBar)
         filterBar.anchor(leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, height: 50)
+        
+        addSubview(underLineView)
+        filterBar.anchor(leading: leadingAnchor, bottom: bottomAnchor, width: frame.width / 3, height: 2)
     }
     
     required init?(coder: NSCoder) {
