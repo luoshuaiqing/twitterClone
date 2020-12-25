@@ -86,6 +86,8 @@ class ProfileHeader: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        filterBar.delegate = self
+        
         addSubview(containerView)
         containerView.anchor(top: topAnchor, leading: leadingAnchor, trailing: trailingAnchor, height: 108)
         
@@ -111,7 +113,7 @@ class ProfileHeader: UICollectionReusableView {
         filterBar.anchor(leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, height: 50)
         
         addSubview(underLineView)
-        filterBar.anchor(leading: leadingAnchor, bottom: bottomAnchor, width: frame.width / 3, height: 2)
+        underLineView.anchor(leading: leadingAnchor, bottom: bottomAnchor, width: frame.width / 3, height: 2)
     }
     
     required init?(coder: NSCoder) {
@@ -126,5 +128,18 @@ class ProfileHeader: UICollectionReusableView {
 
     @objc func handleEditProfileFollow() {
         
+    }
+}
+
+// MARK: - ProfileFilterViewDelegate
+
+extension ProfileHeader: ProfileFilterViewDelegate {
+    func filterView(_ view: ProfileFilterView, didSelect indexPath: IndexPath) {
+        guard let cell = view.collectionView.cellForItem(at: indexPath) as? ProfileFilterCell else { return }
+
+        let xPosition = cell.frame.origin.x
+        UIView.animate(withDuration: 0.3) {
+            self.underLineView.frame.origin.x = xPosition
+        }
     }
 }
