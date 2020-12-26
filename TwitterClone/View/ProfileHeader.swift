@@ -71,7 +71,7 @@ class ProfileHeader: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 3
-        label.text = "This is a user bio that dghdslghdshglsdhgd dgdhkgs hdgkhdk hkgslhdskgh sdkghldsghdsklh dlsghklghldshgldshgldshgldshgdhglsdghdslkgh dslghdk hkdglskhdglhgk dhslghds klghdlshgdshgdsh ld."
+        label.text = "This is user bio section."
         return label
     }()
     
@@ -79,6 +79,30 @@ class ProfileHeader: UICollectionReusableView {
         let view = UIView()
         view.backgroundColor = .twitterBlue
         return view
+    }()
+    
+    private let followingLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "X Following"
+        
+        let followTap = UITapGestureRecognizer(target: self, action: #selector(handleFollowersTapped))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(followTap)
+        
+        return label
+    }()
+    
+    private let followersLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "X Followers"
+        
+        let followTap = UITapGestureRecognizer(target: self, action: #selector(handleFollowingTapped))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(followTap)
+        
+        return label
     }()
     
     // MARK: - Lifecycle
@@ -109,6 +133,14 @@ class ProfileHeader: UICollectionReusableView {
         addSubview(userDetailsStack)
         userDetailsStack.anchor(top: profileImageView.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 8, paddingLeft: 12, paddingRight: 12)
         
+        let followStack = UIStackView(arrangedSubviews: [followingLabel, followersLabel])
+        followStack.axis = .horizontal
+        followStack.spacing = 8
+        followStack.distribution = .fillEqually
+        
+        addSubview(followStack)
+        followStack.anchor(top: userDetailsStack.bottomAnchor, leading: leadingAnchor, paddingTop: 8, paddingLeft: 12)
+        
         addSubview(filterBar)
         filterBar.anchor(leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, height: 50)
         
@@ -121,6 +153,14 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     // MARK: - Selectors
+    
+    @objc func handleFollowersTapped() {
+        
+    }
+    
+    @objc func handleFollowingTapped() {
+        
+    }
     
     @objc func handleDismissal() {
         
