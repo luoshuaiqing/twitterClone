@@ -80,7 +80,7 @@ class ProfileHeader: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 3
-        label.text = "This is user bio section."
+        label.text = "This is user bio section. (testing)"
         return label
     }()
     
@@ -192,6 +192,9 @@ class ProfileHeader: UICollectionReusableView {
         editProfileFollowButton.setTitle(viewModel.actionButtonTitle, for: .normal)
         followingLabel.attributedText = viewModel.followingString
         followerLabel.attributedText = viewModel.followerString
+        
+        fullNameLabel.text = user.fullName
+        userNameLabel.text = viewModel.userNameText
     }
 }
 
