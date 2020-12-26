@@ -11,6 +11,10 @@ class ProfileHeader: UICollectionReusableView {
     
     // MARK: - Properties
     
+    var user: User? {
+        didSet { configure() }
+    }
+    
     private let filterBar = ProfileFilterView()
     
     private lazy var containerView: UIView = {
@@ -93,7 +97,7 @@ class ProfileHeader: UICollectionReusableView {
         return label
     }()
     
-    private let followersLabel: UILabel = {
+    private let followerLabel: UILabel = {
         let label = UILabel()
         
         label.text = "X Followers"
@@ -133,7 +137,7 @@ class ProfileHeader: UICollectionReusableView {
         addSubview(userDetailsStack)
         userDetailsStack.anchor(top: profileImageView.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 8, paddingLeft: 12, paddingRight: 12)
         
-        let followStack = UIStackView(arrangedSubviews: [followingLabel, followersLabel])
+        let followStack = UIStackView(arrangedSubviews: [followingLabel, followerLabel])
         followStack.axis = .horizontal
         followStack.spacing = 8
         followStack.distribution = .fillEqually
@@ -168,6 +172,18 @@ class ProfileHeader: UICollectionReusableView {
 
     @objc func handleEditProfileFollow() {
         
+    }
+    
+    // MARK: - Helpers
+    
+    
+    func configure() {
+        guard let user = user else { return }
+        
+        let viewModel = ProfileHeaderViewModel(user: user)
+        
+        followingLabel.attributedText = viewModel.followingString
+        followerLabel.attributedText = viewModel.followerString
     }
 }
 
