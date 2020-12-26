@@ -1,5 +1,5 @@
 //
-//  TweetView.swift
+//  TweetViewModel.swift
 //  TwitterClone
 //
 //  Created by 罗帅卿 on 12/23/20.
