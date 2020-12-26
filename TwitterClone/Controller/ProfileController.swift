@@ -15,6 +15,10 @@ class ProfileController: UICollectionViewController {
     // MARK: - Properties
     
     private let user: User
+    
+    private var tweets = [Tweet]() {
+        didSet { collectionView.reloadData() }
+    }
 
     // MARK: - Lifecycle
     
@@ -30,6 +34,7 @@ class ProfileController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        fetchTweets()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +42,16 @@ class ProfileController: UICollectionViewController {
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.isHidden = true
     }
+    
+    // MARK: API
+    
+    func fetchTweets() {
+        TweetService.shared.fetchTweets(forUser: user) { (tweets) in
+            self.tweets = tweets
+        }
+    }
+    
+    // MARK: Helpers
     
     func configureCollectionView() {
         collectionView.backgroundColor = .white
@@ -51,11 +66,12 @@ class ProfileController: UICollectionViewController {
 
 extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return tweets.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
+        cell.tweet = tweets[indexPath.row]
         return cell
     }
 }
