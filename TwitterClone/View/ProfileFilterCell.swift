@@ -37,7 +37,7 @@ class ProfileFilterCell: UICollectionViewCell {
         backgroundColor = .white
         
         addSubview(titleLabel)
-        titleLabel.center(inView: self)
+        titleLabel.center(view: self)
     }
     
     required init?(coder: NSCoder) {

@@ -109,7 +109,7 @@ class TweetCell: UICollectionViewCell {
         actionStack.spacing = 72
         
         addSubview(actionStack)
-        actionStack.centerX(inView: self)
+        actionStack.centerX(view: self)
         actionStack.anchor(bottom: bottomAnchor, paddingBottom: 8)
         
         let underlineView = UIView()
