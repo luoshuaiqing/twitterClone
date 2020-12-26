@@ -32,6 +32,7 @@ class FeedController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default // the nav bar will have a separatar line
         navigationController?.navigationBar.isHidden = false
     }
     
