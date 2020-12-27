@@ -58,11 +58,15 @@ struct UserService {
         }
     }
     
-    func fetchUserStats(uid: String, completion: @escaping() -> Void) {
+    // todo: needs to listen to real time changes
+    func fetchUserStats(uid: String, completion: @escaping(UserRelationStats) -> Void) {
         REF_USER_FOLLOWERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            let followers = snapshot.children.allObjects.count
+            let cntFollowers = snapshot.children.allObjects.count
             
-            
+            REF_USER_FOLLOWINGS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+                let cntFollowings = snapshot.children.allObjects.count
+                completion(UserRelationStats(cntFollowers: cntFollowers, cntFollowings: cntFollowings))
+            }
         }
     }
 }

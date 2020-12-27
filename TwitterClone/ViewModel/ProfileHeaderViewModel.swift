@@ -28,11 +28,17 @@ struct ProfileHeaderViewModel {
     let userNameText: String
     
     var followerString: NSAttributedString? {
-        return attributedText(withValue: 0, text: "followers")
+        guard let cntFollowers = user.stats?.cntFollowers else {
+            return NSAttributedString(string: "Loading...", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray])
+        }
+        return attributedText(withValue: cntFollowers, text: "followers")
     }
     
     var followingString: NSAttributedString? {
-        return attributedText(withValue: 2, text: "following")
+        guard let cntFollowings = user.stats?.cntFollowings else {
+            return NSAttributedString(string: "Loading...", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.lightGray])
+        }
+        return attributedText(withValue: cntFollowings, text: "following")
     }
     
     var actionButtonTitle: String {
