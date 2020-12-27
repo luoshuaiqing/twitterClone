@@ -39,7 +39,12 @@ struct ProfileHeaderViewModel {
         if user.isCurrentUser {
             return "Edit Profile"
         } else {
-            return "Follow"
+            guard let isBeingFollowed = user.isBeingFollowed else { return "Loading..." }
+            if isBeingFollowed {
+                return "Following"
+            } else {
+                return "Follow"
+            }
         }
     }
     

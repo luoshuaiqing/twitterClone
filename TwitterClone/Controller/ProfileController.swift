@@ -14,7 +14,7 @@ class ProfileController: UICollectionViewController {
     
     // MARK: - Properties
     
-    private let user: User
+    private var user: User
     
     private var tweets = [Tweet]() {
         didSet { collectionView.reloadData() }
@@ -35,6 +35,7 @@ class ProfileController: UICollectionViewController {
         super.viewDidLoad()
         configureCollectionView()
         fetchTweets()
+        checkIfUserIfBeingFollowed()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +49,13 @@ class ProfileController: UICollectionViewController {
     func fetchTweets() {
         TweetService.shared.fetchTweets(forUser: user) { (tweets) in
             self.tweets = tweets
+        }
+    }
+    
+    func checkIfUserIfBeingFollowed() {
+        UserService.shared.checkIfUserIfBeingFollowed(uid: user.uid) { (isBeingFollowed) in
+            self.user.isBeingFollowed = isBeingFollowed
+            self.collectionView.reloadData()
         }
     }
     
@@ -104,9 +112,21 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileController: ProfileHeaderDelegate {
     func handleEditProfileFollow(_ header: ProfileHeader) {
-        UserService.shared.followUser(uid: user.uid) { (ref, err) in
-            
+        guard let isBeingFollowed = self.user.isBeingFollowed else { return }
+        
+        // the current user is being followed
+        if isBeingFollowed {
+            UserService.shared.unfollowUser(uid: user.uid) { (ref, err) in
+                self.user.isBeingFollowed!.toggle()
+                header.editProfileFollowButton.setTitle("Follow", for: .normal)
+            }
+        } else {
+            UserService.shared.followUser(uid: user.uid) { (ref, err) in
+                self.user.isBeingFollowed!.toggle()
+                header.editProfileFollowButton.setTitle("Following", for: .normal)
+            }
         }
+        
     }
     
     func handleDismissal() {
