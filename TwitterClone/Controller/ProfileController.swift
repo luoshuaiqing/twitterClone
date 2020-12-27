@@ -112,6 +112,8 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileController: ProfileHeaderDelegate {
     func handleEditProfileFollow(_ header: ProfileHeader) {
+        if user.isCurrentUser { return }
+        
         guard let isBeingFollowed = self.user.isBeingFollowed else { return }
         
         // the current user is being followed
