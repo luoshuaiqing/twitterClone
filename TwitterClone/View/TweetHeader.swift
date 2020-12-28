@@ -41,6 +41,23 @@ class TweetHeader: UICollectionReusableView {
         return label
     }()
     
+    private let captionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.numberOfLines = 0
+        label.text = "Some test caption here..."
+        return label
+    }()
+    
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textAlignment = .left
+        label.text = "6:33 PPM - 1/28/2020"
+        return label
+    }()
+    
     // MARK: - Lifecycles
     
     override init(frame: CGRect) {
@@ -48,13 +65,19 @@ class TweetHeader: UICollectionReusableView {
         
         let labelStack = UIStackView(arrangedSubviews: [fullNameLabel, userNameLabel])
         labelStack.axis = .vertical
-        labelStack.spacing = 4
+        labelStack.spacing = -6
         
         let stack = UIStackView(arrangedSubviews: [profileImageView, labelStack])
         stack.spacing = 12
         
         addSubview(stack)
         stack.anchor(top: topAnchor, leading: leadingAnchor, paddingTop: 16, paddingLeft: 16)
+        
+        addSubview(captionLabel)
+        captionLabel.anchor(top: stack.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 20, paddingLeft: 16, paddingRight: 16)
+        
+        addSubview(dateLabel)
+        dateLabel.anchor(top: captionLabel.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 20, paddingLeft: 16, paddingRight: 16)
     }
     
     required init?(coder: NSCoder) {
