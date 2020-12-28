@@ -66,6 +66,45 @@ class TweetHeader: UICollectionReusableView {
         return button
     }()
     
+    private lazy var retweetsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(handleRetweetsTapped), for: .touchUpInside)
+        button.setTitle("X Retweets", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        return button
+    }()
+    
+    private lazy var likesButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(handleLikesTapped), for: .touchUpInside)
+        button.setTitle("X likes", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        return button
+    }()
+    
+    private lazy var statsView: UIView = {
+        let view = UIView()
+        
+        let divider1 = UIView()
+        divider1.backgroundColor = .systemGroupedBackground
+        view.addSubview(divider1)
+        divider1.anchor(top: view.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingLeft: 8, height: 1.0)
+        
+        let stack = UIStackView(arrangedSubviews: [retweetsButton, likesButton])
+        stack.axis = .horizontal
+        stack.spacing = 12
+        
+        view.addSubview(stack)
+        stack.anchor(top: divider1.bottomAnchor, leading: view.leadingAnchor, paddingTop: 2, paddingLeft: 16)
+        
+        let divider2 = UIView()
+        divider2.backgroundColor = .systemGroupedBackground
+        view.addSubview(divider2)
+        divider2.anchor(top: stack.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 2, paddingLeft: 8, height: 1.0)
+        
+        return view
+    }()
+    
     // MARK: - Lifecycles
     
     override init(frame: CGRect) {
@@ -90,6 +129,9 @@ class TweetHeader: UICollectionReusableView {
         addSubview(optionsButton)
         optionsButton.centerY(view: stack)
         optionsButton.anchor(trailing: trailingAnchor, paddingRight: 8)
+        
+        addSubview(statsView)
+        statsView.anchor(top: dateLabel.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 20)
     }
     
     required init?(coder: NSCoder) {
@@ -104,5 +146,13 @@ class TweetHeader: UICollectionReusableView {
     
     @objc func showActionSheet() {
         print("DEBUG: Handle show action sheet..")
+    }
+    
+    @objc func handleRetweetsTapped() {
+        
+    }
+    
+    @objc func handleLikesTapped() {
+        
     }
 }
