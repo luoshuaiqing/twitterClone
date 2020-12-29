@@ -17,3 +17,5 @@ let REF_USER_TWEETS = DB_REF.child("user-tweets")
 let REF_USER_FOLLOWERS = DB_REF.child("user-followers")
 let REF_USER_FOLLOWINGS = DB_REF.child("user-followings")
 let REF_TWEET_REPLIES = DB_REF.child("tweet-replies")
+
+typealias DatabaseCompletion = (Error?, DatabaseReference) -> Void

@@ -98,6 +98,8 @@ class TweetHeader: UICollectionReusableView {
         view.addSubview(divider2)
         divider2.anchor(top: stack.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 6, paddingLeft: 8, height: 1.0)
         
+        view.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
         return view
     }()
     
@@ -141,10 +143,10 @@ class TweetHeader: UICollectionReusableView {
         stack.anchor(top: topAnchor, leading: leadingAnchor, paddingTop: 16, paddingLeft: 16)
         
         addSubview(captionLabel)
-        captionLabel.anchor(top: stack.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 12, paddingLeft: 16, paddingRight: 16)
+        captionLabel.anchor(top: stack.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 8, paddingLeft: 16, paddingRight: 16)
         
         addSubview(dateLabel)
-        dateLabel.anchor(top: captionLabel.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 20, paddingLeft: 16, paddingRight: 16)
+        dateLabel.anchor(top: captionLabel.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 12, paddingLeft: 16, paddingRight: 16)
         
         addSubview(optionsButton)
         optionsButton.centerY(view: stack)
@@ -158,7 +160,7 @@ class TweetHeader: UICollectionReusableView {
         actionStack.distribution = .fillEqually
         addSubview(actionStack)
         actionStack.centerX(view: self)
-        actionStack.anchor(bottom: bottomAnchor, paddingTop: 12)
+        actionStack.anchor(top: statsView.bottomAnchor, paddingTop: 8)
         
     }
     
