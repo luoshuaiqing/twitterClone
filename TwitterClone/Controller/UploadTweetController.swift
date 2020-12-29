@@ -68,13 +68,6 @@ class UploadTweetController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
-        switch config {
-        case .tweet:
-            print("DEBUG: Config is tweet")
-        case .reply(let tweet):
-            print("DEBUG: Replying to \(tweet.caption)")
-        }
     }
     
     // MARK: Selectors
