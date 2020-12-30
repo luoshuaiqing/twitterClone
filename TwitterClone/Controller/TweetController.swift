@@ -102,15 +102,25 @@ extension TweetController: TweetHeaderDelegate {
         } else {
             if tweet.user.isCurrentUser {
                 actionSheetLauncher = ActionSheetLauncher(user: tweet.user)
+                self.actionSheetLauncher!.delegate = self
                 self.actionSheetLauncher!.show()
             } else {
                 UserService.shared.checkIfUserIfBeingFollowed(uid: tweet.user.uid) { (isBeingFollowed) in
                     var user = self.tweet.user
                     user.isBeingFollowed = isBeingFollowed
                     self.actionSheetLauncher = ActionSheetLauncher(user: user)
+                    self.actionSheetLauncher!.delegate = self
                     self.actionSheetLauncher!.show()
                 }
             }
         }
+    }
+}
+
+// MARK: - ActionSheetLauncherDelegate
+
+extension TweetController: ActionSheetLauncherDelegate {
+    func didSelect(option: ActionSheetOptions) {
+        
     }
 }
