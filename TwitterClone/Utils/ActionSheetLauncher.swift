@@ -16,6 +16,7 @@ class ActionSheetLauncher: NSObject {
     private let user: User
     private let tableView = UITableView()
     private var window: UIWindow?
+    private lazy var viewModel = ActionSheetViewModel(user: user)
     
     private lazy var blackView: UIView = {
         let view = UIView()
@@ -79,7 +80,7 @@ class ActionSheetLauncher: NSObject {
         blackView.frame = window.frame
         
         window.addSubview(tableView)
-        let height = CGFloat(3 * 60 + 100)
+        let height = CGFloat(viewModel.options.count * 60 + 100)
         tableView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
         
         UIView.animate(withDuration: 0.5) {
@@ -101,16 +102,21 @@ class ActionSheetLauncher: NSObject {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension ActionSheetLauncher: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return viewModel.options.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ActionSheetCell
+        cell.option = viewModel.options[indexPath.row]
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate
 
 extension ActionSheetLauncher: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -119,5 +125,9 @@ extension ActionSheetLauncher: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let option = viewModel.options[indexPath.row]
     }
 }
