@@ -49,9 +49,14 @@ class TweetController: UICollectionViewController {
     
     func configureCollectionView() {
         collectionView.backgroundColor = .white
-        
         collectionView.register(TweetHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         collectionView.register(TweetCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    fileprivate func showActionSheet(forUser user: User) {
+        self.actionSheetLauncher = ActionSheetLauncher(user: user)
+        self.actionSheetLauncher!.delegate = self
+        self.actionSheetLauncher!.show()
     }
 }
 
@@ -95,22 +100,20 @@ extension TweetController {
     }
 }
 
+// MARK: TweetHeaderDelegate
+
 extension TweetController: TweetHeaderDelegate {
     func showActionSheet() {
         if let actionSheetLauncher = self.actionSheetLauncher {
             actionSheetLauncher.show()
         } else {
             if tweet.user.isCurrentUser {
-                actionSheetLauncher = ActionSheetLauncher(user: tweet.user)
-                self.actionSheetLauncher!.delegate = self
-                self.actionSheetLauncher!.show()
+                showActionSheet(forUser: tweet.user)
             } else {
                 UserService.shared.checkIfUserIfBeingFollowed(uid: tweet.user.uid) { (isBeingFollowed) in
                     var user = self.tweet.user
                     user.isBeingFollowed = isBeingFollowed
-                    self.actionSheetLauncher = ActionSheetLauncher(user: user)
-                    self.actionSheetLauncher!.delegate = self
-                    self.actionSheetLauncher!.show()
+                    self.showActionSheet(forUser: user)
                 }
             }
         }
