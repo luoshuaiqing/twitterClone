@@ -45,6 +45,8 @@
 		86E426C62599CA19001752DE /* TweetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426C52599CA19001752DE /* TweetHeader.swift */; };
 		86E426CB259BD13E001752DE /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426CA259BD13E001752DE /* UploadTweetViewModel.swift */; };
 		86E426D0259C36A4001752DE /* ActionSheetLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426CF259C36A4001752DE /* ActionSheetLauncher.swift */; };
+		86E426D5259C434E001752DE /* ActionSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426D4259C434E001752DE /* ActionSheetCell.swift */; };
+		86E426DA259D0814001752DE /* ActionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426D9259D0814001752DE /* ActionSheetViewModel.swift */; };
 		D3AC3AC4F693BFE205EDB958 /* Pods_TwitterClone_TwitterCloneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1833572BB9EE6A883966007C /* Pods_TwitterClone_TwitterCloneUITests.framework */; };
 		EE833A89100D10D1F88C66BF /* Pods_TwitterClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C43BBEFB427397A7A8004EC /* Pods_TwitterClone.framework */; };
 /* End PBXBuildFile section */
@@ -118,6 +120,8 @@
 		86E426C52599CA19001752DE /* TweetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetHeader.swift; sourceTree = "<group>"; };
 		86E426CA259BD13E001752DE /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		86E426CF259C36A4001752DE /* ActionSheetLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetLauncher.swift; sourceTree = "<group>"; };
+		86E426D4259C434E001752DE /* ActionSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCell.swift; sourceTree = "<group>"; };
+		86E426D9259D0814001752DE /* ActionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewModel.swift; sourceTree = "<group>"; };
 		C88CC0DD4591E57A38459E5C /* Pods-TwitterClone-TwitterCloneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone-TwitterCloneUITests.release.xcconfig"; path = "Target Support Files/Pods-TwitterClone-TwitterCloneUITests/Pods-TwitterClone-TwitterCloneUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,6 +266,7 @@
 				86BC759925945C8E00A1B820 /* TweetViewModel.swift */,
 				861ABF9E2596AB560072AD82 /* ProfileHeaderViewModel.swift */,
 				86E426CA259BD13E001752DE /* UploadTweetViewModel.swift */,
+				86E426D9259D0814001752DE /* ActionSheetViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				861ABF992595C2F30072AD82 /* ProfileFilterCell.swift */,
 				861ABFA925971BAF0072AD82 /* UserCell.swift */,
 				86E426C52599CA19001752DE /* TweetHeader.swift */,
+				86E426D4259C434E001752DE /* ActionSheetCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 				86BC758625931C5900A1B820 /* CaptionTextView.swift in Sources */,
 				861ABFAA25971BAF0072AD82 /* UserCell.swift in Sources */,
 				86CFD073258DE59A007BA62D /* ConversationsController.swift in Sources */,
+				86E426D5259C434E001752DE /* ActionSheetCell.swift in Sources */,
 				86CFD08E258FF0B9007BA62D /* Utilities.swift in Sources */,
 				865855A125905AE6008DA6F0 /* AuthService.swift in Sources */,
 				86E426C12599C89C001752DE /* TweetController.swift in Sources */,
@@ -574,6 +581,7 @@
 				861ABF9F2596AB560072AD82 /* ProfileHeaderViewModel.swift in Sources */,
 				86E426C62599CA19001752DE /* TweetHeader.swift in Sources */,
 				86CFD020258C9F5A007BA62D /* SceneDelegate.swift in Sources */,
+				86E426DA259D0814001752DE /* ActionSheetViewModel.swift in Sources */,
 				86CFD05F258D46A7007BA62D /* MainTabController.swift in Sources */,
 				86CFD07E258E9191007BA62D /* LoginController.swift in Sources */,
 				861ABF952595B9F50072AD82 /* ProfileFilterView.swift in Sources */,
