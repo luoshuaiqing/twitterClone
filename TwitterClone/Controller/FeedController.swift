@@ -112,7 +112,7 @@ extension FeedController: TweetCellDelegate {
         
         TweetService.shared.likeTweet(tweet: tweet) { (err, ref) in
             guard let didLike = cell.tweet?.didLike else { return }
-            cell.tweet!.didLike!.toggle()
+            cell.tweet!.didLike!.toggle() // this will call the didset() on tweet, because we are setting the property of it
             let likes = didLike ? tweet.likes - 1 : tweet.likes + 1
             cell.tweet!.likes = likes
         }

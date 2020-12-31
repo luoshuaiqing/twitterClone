@@ -88,7 +88,9 @@ struct TweetService {
         
         if didLike {
             // unlike tweet
-            
+            REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { (err, ref) in
+                REF_TWEET_LIKES.child(tweet.tweetId).child(uid).removeValue(completionBlock: completion)
+            }
         } else {
             // like tweet
             REF_USER_LIKES.child(uid).updateChildValues([tweet.tweetId: 1]) { (err, ref) in
