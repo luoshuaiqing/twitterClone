@@ -25,6 +25,12 @@ class NotificationsController: UITableViewController {
         fetchNotifications()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.barStyle = .default
+    }
+    
     // MARK: - API
     
     func fetchNotifications() {
@@ -60,11 +66,29 @@ extension NotificationsController {
     }
 }
 
+// MARK: - UITableViewDelegate
+
+extension NotificationsController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let notification = notifications[indexPath.row]
+        guard let tweetId = notification.tweetID else { return }
+        
+        TweetService.shared.fetchTweet(withTweetId: tweetId) { (tweet) in
+            let controller = TweetController(tweet: tweet)
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+
+// MARK: - NotificationCellDelegate
+
 extension NotificationsController: NotificationCellDelegate {
     func didTapProfileImage(_ cell: NotificationCell) {
+        print("here")
         guard let user = cell.notification?.user else { return }
         
         let controller = ProfileController(user: user)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
+ 
