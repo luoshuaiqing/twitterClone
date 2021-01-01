@@ -49,6 +49,8 @@
 		86E426DA259D0814001752DE /* ActionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426D9259D0814001752DE /* ActionSheetViewModel.swift */; };
 		86E426DF259EB2D7001752DE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426DE259EB2D7001752DE /* Notification.swift */; };
 		86E426E4259EB427001752DE /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426E3259EB427001752DE /* NotificationService.swift */; };
+		86E426E9259EC3CD001752DE /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426E8259EC3CD001752DE /* NotificationCell.swift */; };
+		86E426EE259EC851001752DE /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E426ED259EC851001752DE /* NotificationViewModel.swift */; };
 		D3AC3AC4F693BFE205EDB958 /* Pods_TwitterClone_TwitterCloneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1833572BB9EE6A883966007C /* Pods_TwitterClone_TwitterCloneUITests.framework */; };
 		EE833A89100D10D1F88C66BF /* Pods_TwitterClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C43BBEFB427397A7A8004EC /* Pods_TwitterClone.framework */; };
 /* End PBXBuildFile section */
@@ -126,6 +128,8 @@
 		86E426D9259D0814001752DE /* ActionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewModel.swift; sourceTree = "<group>"; };
 		86E426DE259EB2D7001752DE /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		86E426E3259EB427001752DE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		86E426E8259EC3CD001752DE /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		86E426ED259EC851001752DE /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		C88CC0DD4591E57A38459E5C /* Pods-TwitterClone-TwitterCloneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone-TwitterCloneUITests.release.xcconfig"; path = "Target Support Files/Pods-TwitterClone-TwitterCloneUITests/Pods-TwitterClone-TwitterCloneUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -272,6 +276,7 @@
 				861ABF9E2596AB560072AD82 /* ProfileHeaderViewModel.swift */,
 				86E426CA259BD13E001752DE /* UploadTweetViewModel.swift */,
 				86E426D9259D0814001752DE /* ActionSheetViewModel.swift */,
+				86E426ED259EC851001752DE /* NotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				861ABFA925971BAF0072AD82 /* UserCell.swift */,
 				86E426C52599CA19001752DE /* TweetHeader.swift */,
 				86E426D4259C434E001752DE /* ActionSheetCell.swift */,
+				86E426E8259EC3CD001752DE /* NotificationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -571,6 +577,7 @@
 				86CFD073258DE59A007BA62D /* ConversationsController.swift in Sources */,
 				86E426D5259C434E001752DE /* ActionSheetCell.swift in Sources */,
 				86CFD08E258FF0B9007BA62D /* Utilities.swift in Sources */,
+				86E426EE259EC851001752DE /* NotificationViewModel.swift in Sources */,
 				865855A125905AE6008DA6F0 /* AuthService.swift in Sources */,
 				86E426C12599C89C001752DE /* TweetController.swift in Sources */,
 				86BC759F25946B3700A1B820 /* ProfileController.swift in Sources */,
@@ -590,6 +597,7 @@
 				86E426C62599CA19001752DE /* TweetHeader.swift in Sources */,
 				86CFD020258C9F5A007BA62D /* SceneDelegate.swift in Sources */,
 				86E426DA259D0814001752DE /* ActionSheetViewModel.swift in Sources */,
+				86E426E9259EC3CD001752DE /* NotificationCell.swift in Sources */,
 				86CFD05F258D46A7007BA62D /* MainTabController.swift in Sources */,
 				86CFD07E258E9191007BA62D /* LoginController.swift in Sources */,
 				861ABF952595B9F50072AD82 /* ProfileFilterView.swift in Sources */,
